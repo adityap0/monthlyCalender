@@ -45,6 +45,18 @@ class Header extends React.Component {
       };
     });
   };
+  componentDidMount() {
+    if (localStorage.relayData) {
+      this.setState({ relayData: JSON.parse(localStorage.relayData) });
+    }
+    window.addEventListener("beforeunload", this.handleUpdateLocalStorage);
+  }
+  componentWillUnmount() {
+    window.removeEventListener("beforeunload", this.handleUpdateLocalStorage);
+  }
+  handleUpdateLocalStorage = () => {
+    localStorage.setItem("relayData", JSON.stringify(this.state.relayData));
+  };
   render() {
     return (
       <>
