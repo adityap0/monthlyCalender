@@ -10,8 +10,11 @@ class Header extends React.Component {
     };
   }
   handleInput = (e) => {
+    
+    e.target.value =
+      e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
     this.setState({
-      userInput: e.target.value.toUpperCase(),
+      userInput: e.target.value,
     });
   };
   handleSubmit = (e) => {
